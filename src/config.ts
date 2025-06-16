@@ -1,12 +1,12 @@
 import type { SocialObjects } from "@/lib/types";
 
 export const SITE = {
-  website: "https://liederbuch.goldgraben.net", // replace this with your deployed domain
+  website: "https://goldbirds-songbook.github.io", // replace this with your deployed domain
   author: "suijul",
-  desc: "Gemeinsam singen im Goldgraben.",
-  title: "Goldgraben Liederbuch",
+  desc: "Gemeinsam trällern für's Leben.",
+  title: "Goldbirds Songbook",
   ogImage: "the-bluebird-transparent-128x128.png",
-  repo: "https://github.com/fabiankirsch/songbook",
+  repo: "https://github.com/goldbirds-songbook/goldbirds-songbook.github.io",
 };
 
 export const LOCALE = {
