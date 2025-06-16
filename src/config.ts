@@ -6,7 +6,7 @@ export const SITE = {
   desc: "Gemeinsam singen im Goldgraben.",
   title: "Goldgraben Liederbuch",
   ogImage: "the-bluebird-transparent-128x128.png",
-  repo: "https://github.com/HYP3R00T/CelestialDocs",
+  repo: "https://github.com/fabiankirsch/songbook",
 };
 
 export const LOCALE = {
@@ -23,13 +23,8 @@ export const menu_items: { title: string; href: string }[] = [
 
 // Just works with top-level folders and files. For files, don't add extension as it looks for the slug, and not the file name.
 export const side_nav_menu_order: string[] = [
-  "getting-started",
-  "guides",
-  "guides/pages",
-  "guides/table-of-contents",
-  "guides/sidebar-navigation",
-  "custom-components",
-  "reference",
+  "ganzes-jahr",
+  "weihnachten",
 ];
 
 // Don't delete anything. You can use 'true' or 'false'.
@@ -41,7 +36,7 @@ export const docconfig = {
   hide_datetime: false,
   hide_time: true,
   hide_search: false,
-  hide_repo_button: false,
+  hide_repo_button: true,
   hide_author: true,
 };
 
