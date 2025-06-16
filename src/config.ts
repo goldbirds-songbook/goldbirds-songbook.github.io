@@ -25,6 +25,7 @@ export const menu_items: { title: string; href: string }[] = [
 export const side_nav_menu_order: string[] = [
   "geht-immer",
   "weihnachten",
+  "about",
 ];
 
 // Don't delete anything. You can use 'true' or 'false'.

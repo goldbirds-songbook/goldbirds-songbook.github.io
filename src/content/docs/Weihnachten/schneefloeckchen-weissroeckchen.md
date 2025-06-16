@@ -2,7 +2,8 @@
 title:  Schneeflöckchen, Weißröckchen
 ---
 
-Schneeflöckchen, Weißröckchen, wann kommst du geschneit; Du wohnst in den Wolken, dein Weg ist so weit.
+Schneeflöckchen, Weißröckchen,   
+wann kommst du geschneit; Du wohnst in den Wolken, dein Weg ist so weit.
 
 Komm setz dich ans Fenster, du lieblicher Stern; malst Blumen und Blätter, wir haben dich gern.
 
