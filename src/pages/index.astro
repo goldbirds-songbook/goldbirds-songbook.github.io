@@ -1,11 +1,15 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/home/hero.astro";
+import SideNavMenu from "@/components/docs/SideNavMenu.astro";
+import { menu, capitalizeFirstLetter } from "@/lib/utils";
 ---
 
 <BaseLayout
-  title="CelestialDocs"
-  description="This template helps you build Documentation with Astro, Tailwind CSS, and Shadcn UI."
+  title="Goldgraben Liederbuch"
+  description="Zusammen im Goldgraben oder wo auc immer."
 >
-  <Hero />
+  <!--- <Hero /> --->
+
+  <SideNavMenu items={menu} level={0} />
 </BaseLayout>
