@@ -2,6 +2,7 @@
 import { Socials } from "@/config";
 import { getIconByName } from "@/components/core/Icons";
 import { Button } from "@/components/ui/button";
+import { Search } from "@/components/core/Search";
 
 // To pass the tailwindcss classes to the astro component
 const { class: className } = Astro.props;
@@ -14,38 +15,16 @@ const { class: className } = Astro.props;
     <p
       class="text-center text-sm leading-loose text-muted-foreground md:text-left"
     >
-      Built by <a
-        href="https://hyperoot.dev"
-        target="_blank"
-        rel="noreferrer"
-        class="font-medium underline underline-offset-4">HYP3R00T</a
-      >. The source code is available on
+      <Search client:only="react" />
+    </p>
+    <div class="flex gap-4">
+      Built with
       <a
         href="https://github.com/HYP3R00T/CelestialDocs"
         target="_blank"
         rel="noreferrer"
-        class="font-medium underline underline-offset-4">GitHub</a
+        class="font-medium underline underline-offset-4">Celestial Astro Theme</a
       >.
-    </p>
-    <div class="flex gap-4">
-      {
-        Socials.filter((social) => social.active).map((social) => {
-          const Icon = getIconByName(social.name);
-          return (
-            <a
-              href={social.href}
-              title={social.linkTitle}
-              target="_blank"
-              rel="noreferrer"
-              class="text-muted-foreground hover:text-primary"
-            >
-              <Button size="icon" variant="ghost">
-                {Icon && <Icon className="h-[1.2rem] w-[1.2rem]" />}
-              </Button>
-            </a>
-          );
-        })
-      }
     </div>
   </div>
 </footer>
