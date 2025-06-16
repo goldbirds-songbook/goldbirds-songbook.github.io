@@ -1,11 +1,11 @@
 import type { SocialObjects } from "@/lib/types";
 
 export const SITE = {
-  website: "https://hyperoot.dev", // replace this with your deployed domain
-  author: "HYP3R00T",
-  desc: "Documentation template using Astro and Shadcn",
-  title: "CelestialDocs",
-  ogImage: "og-image.jpg",
+  website: "https://liederbuch.goldgraben.net", // replace this with your deployed domain
+  author: "suijul",
+  desc: "Gemeinsam singen im Goldgraben.",
+  title: "Goldgraben Liederbuch",
+  ogImage: "the-bluebird-transparent-128x128.png",
   repo: "https://github.com/HYP3R00T/CelestialDocs",
 };
 
