@@ -1,18 +1,25 @@
 ---
+// Import necessary utilities and types
 import { capitalizeFirstLetter } from "@/lib/utils";
 import type { SideNavMenuProps } from "@/lib/types";
 
-const { items, level } = Astro.props as SideNavMenuProps;
+// Destructure items, level, and slug from props
+const { items, level, slug } = Astro.props as SideNavMenuProps & { slug?: string }; // Add slug here
+
+// Get the current pathname
 const pathname: string = new URL(Astro.request.url).pathname;
 
-// To pass the tailwindcss classes to the astro component
+// Destructure className from props
 const { class: className } = Astro.props;
 ---
 
 <ul class:list={["list-none m-0", className]}>
   {
     items
-      .filter((item) => !item.draft)
+      .filter((item) => (
+        !item.draft && 
+        (!slug || item.slug.startsWith(slug)) // Filter by slug if provided
+      ))
       .map((item) => {
         const label = item.title
           ? capitalizeFirstLetter(item.title)
@@ -25,7 +32,7 @@ const { class: className } = Astro.props;
           <li class="w-full">
             <a
               href={`/${item.slug}`}
-              class={`${className}  text-sm leading-none w-full`}
+              class={`${className} text-sm leading-none w-full`}
             >
               {label}
             </a>
@@ -37,3 +44,6 @@ const { class: className } = Astro.props;
       })
   }
 </ul>
+
+
+
