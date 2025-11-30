@@ -2,9 +2,21 @@
 title:  O du Fröhliche, O du Selige
 ---
 
-O du fröhliche, o du selige, gnadenbringende Weihnachtszeit! Welt ging verloren, Christ ist geboren: Freue, freue dich, o Christenheit!
+*C F C C F C*  
+**O du fröhliche, o du selige,**    
+*C G D7 G D7 G D7 G*  
+**gnadenbringende Weihnachtszeit!**  
 
-O du fröhliche, o du selige, gnadenbringende Weihnachtszeit! Christ ist erschienen, uns zu versühnen: Freue, freue dich, o Christenheit!
+*G7, C*  
+Welt ging verloren,  
+Christ ist geboren:   
+*C F-C F C, C G7 C*   
+Freue, freue dich, o Christenheit!
 
-O du fröhliche, o du selige, gnadenbringende Weihnachtszeit! Himmlische Heere jauchzen Gott Ehre: Freue, freue dich, o Christenheit!
+**O du...**  
+Christ ist erschienen, uns zu versühnen:  
+Freue, freue dich, o Christenheit!
 
+**O du...**  
+Himmlische Heere jauchzen Gott Ehre:  
+Freue, freue dich, o Christenheit!
