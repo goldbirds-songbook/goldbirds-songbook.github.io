@@ -24,6 +24,12 @@ export const getStaticPaths = (async () => {
     };
   });
 
+  // DEBUG: zeigt alle generierten Slugs in der Konsole
+  console.log(
+    "[...slug].astro generierte Slugs:",
+    posts.map((p) => p.params.slug)
+  );
+
   return posts;
 }) satisfies GetStaticPaths;
 
