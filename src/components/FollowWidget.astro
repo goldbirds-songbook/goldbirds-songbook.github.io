@@ -1,0 +1,147 @@
+---
+// src/components/FollowWidget.astro
+// Einmal im Layout einbinden -> erscheint auf jeder Seite.
+// Funktioniert mit UND ohne Astro View Transitions (<ClientRouter />).
+---
+
+<button id="invite-btn">🌟</button>
+<button id="follow-btn"><span id="follow-label"></span></button>
+
+<style>
+  #invite-btn {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    background: #3a2e22;
+    color: #fbf7ee;
+    border: none;
+    padding: 14px 18px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+  }
+  #invite-btn:active {
+    transform: scale(0.96);
+  }
+  #invite-btn.active {
+    background: #8a6b3a;
+  }
+
+  #follow-btn {
+    position: fixed;
+    right: 16px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    background: #c9a66b;
+    color: #3a2e22;
+    border: none;
+    padding: 14px 18px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-family: inherit;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    display: none;
+    align-items: center;
+    gap: 8px;
+    max-width: 60vw;
+    z-index: 100;
+    animation: pop 0.2s ease-out;
+  }
+  #follow-btn:active {
+    transform: scale(0.96);
+  }
+  #follow-btn span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @keyframes pop {
+    from {
+      transform: scale(0.85);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  import { initializeApp, getApps, getApp } from "firebase/app";
+  import { getDatabase, ref, set, onValue } from "firebase/database";
+
+  const firebaseConfig = {
+    apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+    databaseURL: import.meta.env.PUBLIC_FIREBASE_DB_URL,
+    projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  };
+
+  // Firebase nur EINMAL initialisieren (Script-Modul lebt über Navigationen hinweg weiter)
+  const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const activeRef = ref(db, "active_invite");
+
+  // Alte Subscription merken, um sie bei Navigation sauber zu beenden
+  let unsubscribe: (() => void) | null = null;
+
+  function initFollowWidget() {
+    // Vorherigen Listener abmelden (sonst sammeln sie sich pro Navigation an)
+    if (unsubscribe) {
+      unsubscribe();
+      unsubscribe = null;
+    }
+
+    // Elemente bei JEDER Navigation frisch aus dem DOM holen
+    const inviteBtn = document.getElementById("invite-btn");
+    const followBtn = document.getElementById("follow-btn");
+    const followLabel = document.getElementById("follow-label");
+    if (!inviteBtn || !followBtn || !followLabel) return;
+
+    // Aktuelle Seite bei jedem Aufruf neu auslesen
+    //const pageTitle = document.title;
+    const pageTitle = document.title.split("|")[0].trim();
+    const pageUrl = window.location.href;
+
+    // onclick statt addEventListener -> kann nicht doppelt registriert werden
+    inviteBtn.onclick = () => {
+      set(activeRef, { title: pageTitle, url: pageUrl, ts: Date.now() });
+    };
+
+    unsubscribe = onValue(activeRef, (snap) => {
+      const data = snap.val();
+
+      if (!data || data.url === pageUrl) {
+        followBtn.style.display = "none";
+        inviteBtn.classList.toggle("active", !!data && data.url === pageUrl);
+        return;
+      }
+
+      inviteBtn.classList.remove("active");
+      followLabel.textContent = "→ " + data.title;
+      followBtn.onclick = () => {
+        window.location.href = data.url;
+      };
+      followBtn.style.display = "flex";
+    });
+  }
+
+  // Läuft beim ersten Laden UND nach jeder View-Transition-Navigation
+  document.addEventListener("astro:page-load", initFollowWidget);
+
+  // Fallback, falls View Transitions NICHT aktiv sind
+  if (!document.querySelector("[data-astro-transition-scope]")) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initFollowWidget, {
+        once: true,
+      });
+    } else {
+      initFollowWidget();
+    }
+  }
+</script>
