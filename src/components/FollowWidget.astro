@@ -4,10 +4,16 @@
 // Funktioniert mit UND ohne Astro View Transitions (<ClientRouter />).
 ---
 
-<button id="invite-btn">🌟</button>
+<button id="invite-btn">
+  <img src="/favicon.png" alt="" class="btn-icon" />
+</button>
 <button id="follow-btn"><span id="follow-label"></span></button>
 
 <style>
+  .btn-icon {
+    width: 40px;
+    height: 40px;
+  }
   #invite-btn {
     position: fixed;
     right: 16px;
@@ -15,7 +21,7 @@
     background: #3a2e22;
     color: #fbf7ee;
     border: none;
-    padding: 14px 18px;
+    padding: 4px 4px;
     border-radius: 50px;
     font-size: 0.95rem;
     font-family: inherit;
